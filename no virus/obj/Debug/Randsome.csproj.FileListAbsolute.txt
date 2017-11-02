@@ -1,0 +1,8 @@
+c:\users\user\source\repos\Randsome\Randsome\bin\Debug\Randsome.exe.config
+c:\users\user\source\repos\Randsome\Randsome\bin\Debug\Randsome.exe
+c:\users\user\source\repos\Randsome\Randsome\bin\Debug\Randsome.pdb
+c:\users\user\source\repos\Randsome\Randsome\obj\Debug\Randsome.csprojResolveAssemblyReference.cache
+c:\users\user\source\repos\Randsome\Randsome\obj\Debug\Randsome.csproj.CoreCompileInputs.cache
+c:\users\user\source\repos\Randsome\Randsome\obj\Debug\Randsome.exe
+c:\users\user\source\repos\Randsome\Randsome\obj\Debug\Randsome.pdb
+c:\users\user\source\repos\Randsome\Randsome\bin\Debug\LitJson.dll
